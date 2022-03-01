@@ -1,5 +1,5 @@
 import React from 'react'
 
-const Input = ({placeholder, ...rest}) => <input className='input-field' placeholder={placeholder} {...rest}/>
+const Input = ({placeholder, ...rest}) => <input className='py-1 px-2 rounded-md border border-gray-500 text-2xl' placeholder={placeholder} {...rest}/>
 
 export default Input;

@@ -1,26 +1,36 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import ReactAutocomplete from 'react-autocomplete'
-import { useSearch, useDebounce } from './hooks'
+
+import useSearch from './hooks/useSearch'
+import useDebounce from './hooks/useDebounce'
+import useSearchForm from './hooks/useSearchForm'
+// import { useSearch, useDebounce, useSearchForm } from './hooks'
 
 import Input from './components/Input'
 
 function App () {
-  const [value, setValue] = useState('')
-  const {articles, error} = useSearch(useDebounce(value))
+  const { searchValue, onSearchChange } = useSearchForm()
+  const { articles, error } = useSearch(useDebounce(searchValue))
 
   return (
-    <div className="App">
-      <p className=''>Error: <span style={{ color: 'red' }}>{error ?? 'Oke'}</span></p>
+    <div className="App container p-8">
+      {
+        error && <p>Error: <span>{error}</span></p> 
+      }
       <ReactAutocomplete
         items={articles}
         renderInput={Input}
         inputProps={{ placeholder: "input a search term" }}
-        renderMenu={(children, value) => (
-          <div style={{  }}>
-            {children}
-            <a href={`/search?query=${value}`}>See all Results</a>
-          </div>
-        )}
+        renderMenu={(children, searchValue) => {
+          return articles && articles.length ?
+            (<div className="">
+              {children}
+              <a href={`/search?query=${searchValue}`} className="underline text-blue-500">
+                See all Results
+              </a>
+            </div>) : <></>
+        }}
         getItemValue={item => item.label}
         renderItem={(item, highlighted) =>
           <div
@@ -30,9 +40,8 @@ function App () {
             {item.label}
           </div>
         }
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        onSelect={value => setValue(value)}
+        value={searchValue}
+        onChange={onSearchChange}
       />
     </div>
   )

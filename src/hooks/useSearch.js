@@ -1,8 +1,7 @@
-import { useEffect, useState, useRef } from 'react'
-
+import { useState, useEffect, useRef } from "react"
 import axios from "axios"
 
-export const useSearch = (query) => {
+const useSearch = (query) => {
   const [state, setState] = useState({
     articles:  [],
     status: 'idle',
@@ -37,7 +36,7 @@ export const useSearch = (query) => {
         setState({
           articles: parsedResponse,
           status: 'success',
-          error: ''
+          error: null
         })
       })
 
@@ -57,18 +56,4 @@ export const useSearch = (query) => {
   return state
 }
 
-export const useDebounce = (value, delay = 500) => {
-  const [debouncedValue, setDebouncedValue] = useState(value)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [value, delay])
-
-  return debouncedValue
-}
+export default useSearch
