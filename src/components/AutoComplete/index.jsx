@@ -1,6 +1,7 @@
 import React from 'react'
 
 import ReactAutocomplete from 'react-autocomplete'
+import { Link } from "react-router-dom"
 
 import Input from '../Input'
 
@@ -18,7 +19,7 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
           return articles && articles.length ?
             (<div className="rounded-md border mt-1 p-2">
               {children}
-              <a href={`/search?query=${searchValue}`} className="underline text-blue-500">
+              <a href={`/search/${searchValue}`} className="underline text-blue-500">
                 See all Results
               </a>
             </div>) :
@@ -30,7 +31,8 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
             key={item.id}
             style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
           >
-            <a href={item.id} class>{item.label}</a>
+            <Link to={`/search/${item.label}`}>{item.label}</Link>
+            {/* <a href={item.id} class>{item.label}</a> */}
           </div>
         }
         value={searchValue}

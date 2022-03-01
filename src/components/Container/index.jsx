@@ -7,7 +7,7 @@ import useSearchForm from '../../hooks/useSearchForm'
 
 function Container ({ children }) {
   const { searchValue, onSearchChange } = useSearchForm()
-  const { articles, error } = useSearch(useDebounce(searchValue))
+  const { articles, error } = useSearch(useDebounce(searchValue), 10)
 
   return children({searchValue, onSearchChange, articles, error})
 }

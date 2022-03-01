@@ -16,7 +16,7 @@ function App () {
     <Router>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/search" element={<Search/>} />
+        <Route path="/search/:label" element={<Search/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </Router>
