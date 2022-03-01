@@ -1,22 +1,14 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React from 'react'
+
 import ReactAutocomplete from 'react-autocomplete'
 
-import useSearch from './hooks/useSearch'
-import useDebounce from './hooks/useDebounce'
-import useSearchForm from './hooks/useSearchForm'
-// import { useSearch, useDebounce, useSearchForm } from './hooks'
+import Input from '../Input'
 
-import Input from './components/Input'
-
-function App () {
-  const { searchValue, onSearchChange } = useSearchForm()
-  const { articles, error } = useSearch(useDebounce(searchValue))
-
+function AutoComplete ({articles, error, searchValue, onSearchChange}) {
   return (
-    <div className="App container p-8">
+    <div className="container p-8">
       {
-        error && <p>Error: <span>{error}</span></p> 
+        error && <p className='font-bold'>Error: <span className='text-red-500'>{error}</span></p> 
       }
       <ReactAutocomplete
         items={articles}
@@ -47,4 +39,4 @@ function App () {
   )
 }
 
-export default App;
+export default AutoComplete;
