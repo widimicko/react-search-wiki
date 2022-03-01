@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import useSearch from "../../hooks/useSearch";
 import Container from '../../components/Container'
+import ListItem from '../../components/ListItem'
 import AutoComplete from '../../components/AutoComplete'
 
 function Search() {
@@ -13,18 +14,14 @@ function Search() {
 
   return (
     <div className="p-10">
-      <Container>
-        { ({ searchValue, onSearchChange, articles, error }) => <AutoComplete articles={articles} onSearchChange={onSearchChange} searchValue={searchValue} error={error} /> }
-      </Container>
-      { articles && articles.length && !error ?
-          articles.map(article => {
-            return <div key={article.id}>
-              <a href={article.id} target="_blank" rel="noreferrer">
-                {article.label}
-              </a><hr />
-            </div>
-          }):
-          <div>
+      <div className="text-center">
+        <Container>
+          { ({ searchValue, onSearchChange, articles, error }) => <AutoComplete articles={articles} onSearchChange={onSearchChange} searchValue={searchValue} error={error} /> }
+        </Container>
+      </div>
+      { articles && articles.length && !error
+          ? articles.map(article => <ListItem key={article.id} {...article} />)
+          : <div>
             <h1>No Data</h1>
           </div>
       }

@@ -24,6 +24,16 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -41,6 +51,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.7",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "webpack": "^5.69.1"
   }
 }

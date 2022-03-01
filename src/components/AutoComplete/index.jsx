@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import Input from '../Input'
 
 function AutoComplete ({articles, error, searchValue, onSearchChange}) {
+
   return (
     <div className="">
       {
@@ -19,9 +20,9 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
           return articles && articles.length ?
             (<div className="rounded-md border mt-1 p-2">
               {children}
-              <a href={`/search/${searchValue}`} className="underline text-blue-500">
+              <Link to={`/search/${searchValue}`} className="underline text-blue-500">
                 See all Results
-              </a>
+              </Link>
             </div>) :
             <></>
         }}
@@ -31,7 +32,7 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
             key={item.id}
             style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
           >
-            <Link to={`/search/${item.label}`}>{item.label}</Link>
+            <a href={item.id}>{item.label}</a>
             {/* <a href={item.id} class>{item.label}</a> */}
           </div>
         }
