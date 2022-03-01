@@ -6,7 +6,7 @@ import Input from '../Input'
 
 function AutoComplete ({articles, error, searchValue, onSearchChange}) {
   return (
-    <div className="container p-8">
+    <div className="">
       {
         error && <p className='font-bold'>Error: <span className='text-red-500'>{error}</span></p> 
       }
@@ -16,12 +16,13 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
         inputProps={{ placeholder: "input a search term" }}
         renderMenu={(children, searchValue) => {
           return articles && articles.length ?
-            (<div className="">
+            (<div className="rounded-md border mt-1 p-2">
               {children}
               <a href={`/search?query=${searchValue}`} className="underline text-blue-500">
                 See all Results
               </a>
-            </div>) : <></>
+            </div>) :
+            <></>
         }}
         getItemValue={item => item.label}
         renderItem={(item, highlighted) =>
@@ -29,7 +30,7 @@ function AutoComplete ({articles, error, searchValue, onSearchChange}) {
             key={item.id}
             style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
           >
-            {item.label}
+            <a href={item.id} class>{item.label}</a>
           </div>
         }
         value={searchValue}
