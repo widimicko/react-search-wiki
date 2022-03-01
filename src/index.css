@@ -1,6 +1,10 @@
-.input-field {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .input-field {
   padding: 5px 10px;
   border: 1px solid grey;
   border-radius: 5px;
   font-size: 24px;
-}
+} */
