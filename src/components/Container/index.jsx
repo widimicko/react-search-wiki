@@ -9,7 +9,7 @@ function Container ({ children }) {
   const { searchValue, onSearchChange } = useSearchForm()
   const { articles, error } = useSearch(useDebounce(searchValue))
 
-  return children({searchValue, onSearchChange, articles})
+  return children({searchValue, onSearchChange, articles, error})
 }
 
 export default Container
